@@ -169,7 +169,7 @@ jobs:
         name: ARMv8${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
         tag: ${{ env.FIRMWARE_TAG }}
-        token: ${{ secrets.GITHUB1_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is Temporary Firmware for Armvirt 64**
@@ -185,7 +185,7 @@ jobs:
         delete_tags: true
         delete_tag_pattern: ARMv8
       env:
-        GITHUB1_TOKEN: ${{ secrets.GITHUB1_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   Package:
     needs: [Build]
@@ -244,7 +244,7 @@ jobs:
         allowUpdates: true
         removeArtifacts: true
         tag: Panther_X2_${{ env.OPENWRT_TAG }}
-        token: ${{ secrets.GITHUB1_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
         body: |
           **This is OpenWrt Firmware for Armvirt 64**
@@ -263,7 +263,7 @@ jobs:
         delete_tags: true
         delete_tag_pattern: Panther_X2
       env:
-        GITHUB1_TOKEN: ${{ secrets.GITHUB1_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: 删除工作流运行
       uses: Mattraks/delete-workflow-runs@main
       with:
