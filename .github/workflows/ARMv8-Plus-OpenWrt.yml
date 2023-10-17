@@ -383,14 +383,14 @@ jobs:
 
     - name: Package OpenWrt Firmware
       if: steps.download.outputs.status == 'success'
-      uses: unifreq/openwrt_packit@master
-      env:
-        OPENWRT_ARMVIRT: openwrt-armvirt/*rootfs.tar.gz
-        PACKAGE_SOC: all
-        WHOAMI: Haiibo
-        KERNEL_VERSION_NAME: 5.15.13_6.1.5
-        KERNEL_AUTO_LATEST: true
-        DISTRIB_REVISION: R${{ env.DATE1 }} by Haiibo
+      uses: ophub/amlogic-s9xxx-openwrt@main
+      with:
+        openwrt_path: openwrt/bin/targets/*/*/*rootfs.tar.gz
+        openwrt_board: panther-x2
+        openwrt_kernel: 6.1.52_6.1.45_5.15.127
+        openwrt_size: 2048
+        auto_kernel: true
+        kernel_repo: ophub/kernel
 
     - name: Upload OpenWrt To Artifact
       if: env.PACKAGED_STATUS == 'success' && env.OPENWRT_RELEASE != 'true'
